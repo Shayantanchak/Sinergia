@@ -91,28 +91,6 @@ Sinergia/
 - Python 3.10+ installed
 - PostgreSQL database (Local or Cloud via Supabase/Neon)
 
-### Quickstart
-
-1. **Configure Environment Variables**:
-   Create a `.env` file in the root directory:
-   ```env
-   DATABASE_URL=postgresql://user:password@host:5432/sinergia_db
-   PORT=8000
-   ```
-
-2. **Test Data Ingestion**:
-   ```python
-   from backend.ingestion import fetch_company_financials
-
-   acquirer = fetch_company_financials("MSFT")
-   print(acquirer)
-   ```
-
-3. **Run Phase 1 Accuracy Verification**:
-   ```bash
-   python scratch/verify_phase1.py
-   ```
-
 ---
 
 ## License
