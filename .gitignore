@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+.pytest_cache/
+.env
+venv/
+.idea/
+.vscode/
+*.jpg
+*.jpeg
+*.png
+*.md
+!README.md

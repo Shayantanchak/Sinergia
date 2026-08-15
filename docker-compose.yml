@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: sinergia-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://sinergia_user:sinergia_pass@postgres:5432/sinergia_db
+      - ENV=development
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: sinergia-postgres
+    environment:
+      - POSTGRES_USER=sinergia_user
+      - POSTGRES_PASSWORD=sinergia_pass
+      - POSTGRES_DB=sinergia_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
