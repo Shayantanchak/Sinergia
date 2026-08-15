@@ -1,4 +1,4 @@
-# Sinergia — Automated M&A Accretion/Dilution Engine
+# Sinergia-Automated M&A Accretion/Dilution Engine
 
 Sinergia is an institutional-grade M&A deal screening and pro-forma merger modeling engine built with Python and FastAPI. It automates front-office investment banking workflows by ingesting public equity financial statements, structuring customizable consideration mixes (Cash, Debt, Equity), and modeling balance sheet consolidations, Purchase Price Allocation (PPA), and EPS accretion/dilution mechanics.
 
