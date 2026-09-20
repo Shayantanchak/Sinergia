@@ -1,5 +1,4 @@
-version: '3.8'
-
+# Local development: API + Postgres.
 services:
   api:
     build: .
@@ -7,22 +6,30 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://sinergia_user:sinergia_pass@postgres:5432/sinergia_db
-      - ENV=development
+      DATABASE_URL: postgresql://sinergia_user:sinergia_pass@postgres:5432/sinergia_db
+      ENV: development
+      # Use the exact variable name that backend/security.py reads.
+      JWT_SECRET: ${JWT_SECRET:-dev-only-change-me}
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   postgres:
     image: postgres:15-alpine
     container_name: sinergia-postgres
     environment:
-      - POSTGRES_USER=sinergia_user
-      - POSTGRES_PASSWORD=sinergia_pass
-      - POSTGRES_DB=sinergia_db
+      POSTGRES_USER: sinergia_user
+      POSTGRES_PASSWORD: sinergia_pass
+      POSTGRES_DB: sinergia_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sinergia_user -d sinergia_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   postgres_data:
